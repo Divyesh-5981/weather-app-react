@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Card from './components/Card';
+import ContainerWrapper from './components/ContainerWrapper';
+import Input from './components/Input';
 
 function App() {
+  const [response, setResponse] = React.useState(null);
+
+  const getResponse = (response) => {
+    setResponse(response)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Card>
+      <Input getResponse={getResponse} />
+      {response && <ContainerWrapper response={response} />}
+    </Card >
   );
 }
 
