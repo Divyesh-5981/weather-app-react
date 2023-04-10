@@ -30,9 +30,9 @@ function WeatherLeftInfo({ response }) {
       weatherDes === "very heavy rain" ||
       weatherDes === "extreme rain"
     ) {
-      return "../animated/rain.svg";
+      return "/animated/rain.svg";
     } else if (weatherMain === "Snow" || weatherDes === "freezing rain") {
-      return "../animated/snow.svg";
+      return "/animated/snow.svg";
     } else if (
       weatherMain === "Drizzle" ||
       weatherDes === "light intensity shower rain" ||
@@ -40,19 +40,19 @@ function WeatherLeftInfo({ response }) {
       weatherDes === "heavy intensity shower rain" ||
       weatherDes === "ragged shower rain"
     ) {
-      return "../animated/shower_rain.svg";
+      return "/animated/shower_rain.svg";
     } else if (weatherMain === "Clouds" || weatherDes === "few clouds") {
-      return "../animated/few_clouds.svg";
+      return "/animated/few_clouds.svg";
     } else if (
       weatherDes === "scattered clouds" ||
       weatherDes === "broken clouds" ||
       weatherDes === "overcast clouds"
     ) {
-      return "../animated/broken_clouds.svg";
+      return "/animated/broken_clouds.svg";
     } else if (weatherMain === "Clear") {
-      return `../animated/clear_sky.svg`;
+      return `/animated/clear_sky.svg`;
     } else if (weatherMain === "Thunderstorm") {
-      return `../animated/thunderstorm.svg`;
+      return `/animated/thunderstorm.svg`;
     } else if (
       weatherMain === "Mist" ||
       weatherMain === "Smoke" ||
@@ -64,7 +64,7 @@ function WeatherLeftInfo({ response }) {
       weatherMain === "Squall" ||
       weatherMain === "Tornado"
     ) {
-      return `../animated/mist.svg`;
+      return `/animated/mist.svg`;
     } else {
       return;
     }
