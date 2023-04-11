@@ -3,6 +3,10 @@ import moment from "moment";
 import { getCurrentDate, generateWeatherIcon } from "../Helper";
 
 function WeatherLeftInfo({ response }) {
+  // destructure response
+  const { timezone, name, country, description, weatherMain, temp, dt } =
+    response;
+
   const [currTime, setCurrTime] = useState();
 
   // realtime clock
@@ -15,7 +19,7 @@ function WeatherLeftInfo({ response }) {
   }
 
   useEffect(() => {
-    const intervalId = setInterval(() => timeZone(response.timezone), 1000);
+    const intervalId = setInterval(() => timeZone(timezone), 1000);
 
     return () => {
       clearInterval(intervalId);
@@ -26,27 +30,24 @@ function WeatherLeftInfo({ response }) {
     <div className="current-weather-div">
       <div className="name-info">
         <h2 className="country-name">
-          {response.name}
-          {response.country ? "," + response.country : ""}
+          {name}
+          {country ? "," + country : ""}
         </h2>
       </div>
       <div className="current-weather-info">
         <div className="current-weather-imginfo">
           <img
             alt="current weather image"
-            src={generateWeatherIcon(
-              response.description,
-              response.weatherMain
-            )}
+            src={generateWeatherIcon(description, weatherMain)}
           />
-          <h2 className="overcast">{response.weatherMain}</h2>
+          <h2 className="overcast">{weatherMain}</h2>
         </div>
         <div className="current-weather-degreeinfo">
-          <h1 className="degree">{(response.temp - 273.15).toFixed(2)}°C</h1>
+          <h1 className="degree">{(temp - 273.15).toFixed(2)}°C</h1>
         </div>
       </div>
       <div className="time-info">
-        <h2>{getCurrentDate(response.dt, response.timezone)}</h2>
+        <h2>{getCurrentDate(dt, timezone)}</h2>
         <h2 className="time">{currTime}</h2>
       </div>
     </div>

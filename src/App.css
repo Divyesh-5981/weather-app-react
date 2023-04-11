@@ -195,7 +195,7 @@ Right-Box
 */
 section .more-info-div {
   flex: 1;
-  background: linear-gradient(to right, rgb(64, 64, 64), rgb(46, 46, 46));
+  background: linear-gradient(to right, #404040, #2e2e2e);
   border-radius: 15px;
   border: 3px solid #f9bf0d;
   padding: 1rem;
@@ -224,11 +224,11 @@ section .more-info-div {
 }
 
 .error-msg {
-  color: red;
+  color: #ff0000;
   text-align: center;
-  border: 1px solid red;
+  border: 1px solid #ff0000;
   border-radius: 15px;
-  background: whitesmoke;
+  background: #f5f5f5;
   padding: 5px;
   margin-top: 20px;
 }

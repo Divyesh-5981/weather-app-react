@@ -1,6 +1,9 @@
 import React from "react";
 
 function WeatherInfoRight({ response }) {
+  // destructure response
+  const { pressure, visibility, speed, deg, humidity } = response;
+
   return (
     <div className="more-info-div">
       <div className="more-info-heading">
@@ -8,7 +11,7 @@ function WeatherInfoRight({ response }) {
       </div>
       <div className="info-div">
         <div className="single-info">
-          <p className="more-info-p">Pressure: {response.pressure}</p>
+          <p className="more-info-p">Pressure: {pressure}</p>
           <svg
             style={{ fontSize: "20px" }}
             xmlns="http://www.w3.org/2000/svg"
@@ -24,19 +27,19 @@ function WeatherInfoRight({ response }) {
           </svg>
         </div>
         <div className="single-info">
-          <p className="more-info-p">Visibility: {response.visibility}</p>
+          <p className="more-info-p">Visibility: {visibility}</p>
           <i className="far fa-binoculars"></i>
         </div>
         <div className="single-info">
-          <p className="more-info-p">Wind Speed:{response.speed}</p>
+          <p className="more-info-p">Wind Speed: {speed}</p>
           <i className="far fa-wind"></i>
         </div>
         <div className="single-info">
-          <p className="more-info-p">Wind Degree: {response.deg}</p>
+          <p className="more-info-p">Wind Degree: {deg}</p>
           <i className="far fa-location-arrow"></i>
         </div>
         <div className="single-info">
-          <p className="more-info-p">Humidity: {response.humidity}</p>
+          <p className="more-info-p">Humidity: {humidity}</p>
           <i className="far fa-tint"></i>
         </div>
       </div>

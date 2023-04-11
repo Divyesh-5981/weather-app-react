@@ -67,4 +67,42 @@ function generateWeatherIcon(weatherDes, weatherMain) {
     }
 }
 
-export { getCurrentDate, generateWeatherIcon }
+// Destructure response object and build a new object
+const doDestructuring = (response) => {
+    // Destructuring Response Object
+    const {
+        name,
+        visibility,
+        sys: { country },
+        weather,
+        main: { temp, pressure, humidity },
+        wind: { speed, deg },
+        dt,
+        timezone,
+    } = response;
+
+    // main as weatherMain and destructure weather[0] again
+    const { main: weatherMain, description } = weather[0];
+
+    const currentNowTime = Date.now();
+
+    // create object and pass to generateView method
+    return {
+        name: name,
+        visibility: visibility,
+        country: country,
+        weather: weather,
+        temp: temp,
+        pressure: pressure,
+        humidity: humidity,
+        speed: speed,
+        deg: deg,
+        dt: dt,
+        timezone: timezone,
+        weatherMain: weatherMain,
+        description: description,
+        time: currentNowTime,
+    };
+};
+
+export { getCurrentDate, generateWeatherIcon, doDestructuring }

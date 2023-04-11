@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { doDestructuring } from "../Helper";
 
 function Input({ getResponse }) {
   const [input, setInput] = useState("");
@@ -40,7 +41,6 @@ function Input({ getResponse }) {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
       );
 
-      // hasError(!data.ok);
       const response = await data.json();
 
       // destructure response and build a new object with that response
@@ -114,11 +114,9 @@ function Input({ getResponse }) {
             Enter your city name to get weather info
           </div>
           <button
-            className={
-              "getInfo " +
-              (disable ? "not-allowed " : " ") +
-              (formIsValid ? " box-btn" : "")
-            }
+            className={`getInfo ${disable ? "not-allowed " : " "} ${
+              formIsValid ? " box-btn" : ""
+            }`}
             type="submit"
             disabled={disable}
           >
@@ -129,43 +127,5 @@ function Input({ getResponse }) {
     </div>
   );
 }
-
-// Destructure response object and build a new object
-const doDestructuring = (response) => {
-  // Destructuring Response Object
-  const {
-    name,
-    visibility,
-    sys: { country },
-    weather,
-    main: { temp, pressure, humidity },
-    wind: { speed, deg },
-    dt,
-    timezone,
-  } = response;
-
-  // main as weatherMain and destructure weather[0] again
-  const { main: weatherMain, description } = weather[0];
-
-  const currentNowTime = Date.now();
-
-  // create object and pass to generateView method
-  return {
-    name: name,
-    visibility: visibility,
-    country: country,
-    weather: weather,
-    temp: temp,
-    pressure: pressure,
-    humidity: humidity,
-    speed: speed,
-    deg: deg,
-    dt: dt,
-    timezone: timezone,
-    weatherMain: weatherMain,
-    description: description,
-    time: currentNowTime,
-  };
-};
 
 export default Input;

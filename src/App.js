@@ -1,16 +1,15 @@
-import React from 'react';
-import './App.css';
-import Card from './components/Card';
+import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import ContainerWrapper from './components/ContainerWrapper';
 import Input from './components/Input';
-import { ToastContainer } from 'react-toastify';
+import './App.css';
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [response, setResponse] = React.useState(null);
+  const [response, setResponse] = useState(null);
 
   return (
-    <Card>
+    <div className="container">
       <Input getResponse={setResponse} />
       {response && <ContainerWrapper response={response} />}
       <ToastContainer
@@ -24,7 +23,7 @@ function App() {
         pauseOnHover
         theme='colored'
       />
-    </Card >
+    </div >
   );
 }
 
