@@ -7,7 +7,7 @@ function ContainerWrapper({ response }) {
     <div>
       <section className="sectionContainer">
         <WeatherLeftInfo response={response} />
-        {/* <WeatherInfoRight response={response} /> */}
+        <WeatherInfoRight response={response} />
       </section>
     </div>
   );

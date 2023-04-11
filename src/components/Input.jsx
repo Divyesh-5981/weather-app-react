@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Input({ getResponse }) {
   const [input, setInput] = useState("");
   const [disable, setDisable] = useState(true);
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const API_KEY = "96d6d065213dba04092397c03343aea2";
   let errorCity = false;
 
   const inputHandler = (e) => {
@@ -27,7 +27,7 @@ function Input({ getResponse }) {
         localStorage.removeItem(cityName);
       }
     } else {
-      // generateView(displayLocalObject);
+      getResponse(displayLocalObject);
     }
   };
 
@@ -37,23 +37,22 @@ function Input({ getResponse }) {
       setDisable(true);
 
       const data = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
       );
+
+      // hasError(!data.ok);
       const response = await data.json();
 
       // destructure response and build a new object with that response
       const obj = doDestructuring(response);
 
-      // generateview method generate 2 containers which contains weather information
-      // generateView(obj);
-
       getResponse(obj);
-
       return obj;
     } catch (error) {
-      displayErrorMsg("Location is not found! Try Again ☹");
       errorCity = true;
       setDisable(false);
+      getResponse(null);
+      toast.error("Location not found! Try again ☹");
     }
   };
 
@@ -61,7 +60,7 @@ function Input({ getResponse }) {
     e.preventDefault();
     setFormIsValid(true);
     const cityName = input.trim().toLowerCase();
-    if (cityName != "") {
+    if (cityName !== "") {
       if (localStorage.getItem(cityName)) {
         const displayLocalObject = JSON.parse(localStorage.getItem(cityName));
 
@@ -77,6 +76,7 @@ function Input({ getResponse }) {
       // Clear out input field after fetch is complete
       setInput("");
     }
+    setFormIsValid(false);
   };
 
   const checkFormValidation = () => {
@@ -168,17 +168,4 @@ const doDestructuring = (response) => {
   };
 };
 
-// displayErrorMsg when something is wrong
-function displayErrorMsg(msg) {
-  //   sectionDiv.style.display = "none";
-  //   mobiscroll.setOptions({
-  //     theme: "ios",
-  //     themeVariant: "light",
-  //   });
-  //   mobiscroll.toast({
-  //     message: msg,
-  //     display: "bottom",
-  //     color: "danger",
-  //   });
-}
 export default Input;
