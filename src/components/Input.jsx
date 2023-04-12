@@ -14,23 +14,23 @@ function Input({ getResponse }) {
   };
 
   // checkTimeAndDisplayData check time of local storage item if it is > 1 hour then remove from local storage and again make api and store in localstorage. It also remove item from local storage for invalid country
-  const checkTimeAndDisplayData = async (cityName, displayLocalObject) => {
-    const now = Date.now();
+  // const checkTimeAndDisplayData = async (cityName, displayLocalObject) => {
+  //   const now = Date.now();
 
-    if (now - displayLocalObject.time > 3600000) {
-      localStorage.removeItem(cityName);
+  //   if (now - displayLocalObject.time > 3600000) {
+  //     localStorage.removeItem(cityName);
 
-      // fetch data again and set it in local storage
-      const obj = await getWeatherInfo(cityName);
+  //     // fetch data again and set it in local storage
+  //     const obj = await getWeatherInfo(cityName);
 
-      localStorage.setItem(cityName, JSON.stringify(obj));
-      if (errorCity) {
-        localStorage.removeItem(cityName);
-      }
-    } else {
-      getResponse(displayLocalObject);
-    }
-  };
+  //     localStorage.setItem(cityName, JSON.stringify(obj));
+  //     if (errorCity) {
+  //       localStorage.removeItem(cityName);
+  //     }
+  //   } else {
+  //     getResponse(displayLocalObject);
+  //   }
+  // };
 
   // Get Weather Info function which fetch api and display data
   const getWeatherInfo = async (city) => {
@@ -61,17 +61,19 @@ function Input({ getResponse }) {
     setFormIsValid(true);
     const cityName = input.trim().toLowerCase();
     if (cityName !== "") {
-      if (localStorage.getItem(cityName)) {
-        const displayLocalObject = JSON.parse(localStorage.getItem(cityName));
-
-        // check local storage item time then display data
-        checkTimeAndDisplayData(cityName, displayLocalObject);
+      if (
+        localStorage.getItem(cityName) &&
+        Date.now() - JSON.parse(localStorage.getItem(cityName)).time < 3600000
+      ) {
+        getResponse(JSON.parse(localStorage.getItem(cityName)));
       } else {
+        if (localStorage.getItem(cityName)) localStorage.removeItem(cityName);
+
         const obj = await getWeatherInfo(cityName);
+
         if (!errorCity) {
           localStorage.setItem(cityName, JSON.stringify(obj));
         }
-        errorCity = false;
       }
       // Clear out input field after fetch is complete
       setInput("");
