@@ -9,17 +9,16 @@ function WeatherLeftInfo({ response }) {
 
   const [currTime, setCurrTime] = useState();
 
-  // realtime clock
-  function timeZone(timezone) {
-    const timezoneInMinutes = timezone / 60;
-    const currentTime = moment()
-      .utcOffset(timezoneInMinutes)
-      .format("h:mm:ss A");
-    setCurrTime(currentTime);
-  }
-
   useEffect(() => {
-    const intervalId = setInterval(() => timeZone(timezone), 1000);
+    // realtime clock
+    const getCurrentTime = (timezone) => {
+      const timezoneInMinutes = timezone / 60;
+      const currentTime = moment()
+        .utcOffset(timezoneInMinutes)
+        .format("h:mm:ss A");
+      setCurrTime(currentTime);
+    };
+    const intervalId = setInterval(() => getCurrentTime(timezone), 1000);
 
     return () => {
       clearInterval(intervalId);

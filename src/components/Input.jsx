@@ -79,17 +79,13 @@ function Input({ getResponse }) {
     setFormIsValid(false);
   };
 
-  const checkFormValidation = () => {
-    if (input.length > 0 && input.trim() !== "") {
+  useEffect(() => {
+    if (input.trim() !== "") {
       setDisable(false);
     } else {
       setDisable(true);
     }
-  };
-
-  useEffect(() => {
-    checkFormValidation();
-  }, [input, disable]);
+  }, [input]);
 
   return (
     <div className="input-div">
