@@ -13,25 +13,6 @@ function Input({ getResponse }) {
     setInput(e.target.value);
   };
 
-  // checkTimeAndDisplayData check time of local storage item if it is > 1 hour then remove from local storage and again make api and store in localstorage. It also remove item from local storage for invalid country
-  // const checkTimeAndDisplayData = async (cityName, displayLocalObject) => {
-  //   const now = Date.now();
-
-  //   if (now - displayLocalObject.time > 3600000) {
-  //     localStorage.removeItem(cityName);
-
-  //     // fetch data again and set it in local storage
-  //     const obj = await getWeatherInfo(cityName);
-
-  //     localStorage.setItem(cityName, JSON.stringify(obj));
-  //     if (errorCity) {
-  //       localStorage.removeItem(cityName);
-  //     }
-  //   } else {
-  //     getResponse(displayLocalObject);
-  //   }
-  // };
-
   // Get Weather Info function which fetch api and display data
   const getWeatherInfo = async (city) => {
     try {
