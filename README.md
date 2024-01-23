@@ -57,10 +57,17 @@ Welcome to Weatherly! Your go-to weather app built with HTML, CSS, and JavaScrip
 
    - Enter a city or country, stay updated with the current weather, and plan your days seamlessly.
   
-# Demo 🎥
+## Demo 🎥
 
 - For a live demo, check out <a href="https://weather-application-using-react.netlify.app/">Weather App | React</a>.
 
-# Acknowledgements 🙏
+## Acknowledgements 🙏
 
 - Special thanks to OpenWeather for providing reliable weather data.
+  
+## Get in Touch 👋
+
+- If you have any questions, feedback, or just want to connect, feel free to reach out:
+
+- Email: divyeshkumbhani8@gmail.com
+- LinkedIn: https://www.linkedin.com/in/divyesh-kumbhani-a31ba4214/
