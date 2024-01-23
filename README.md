@@ -1,5 +1,9 @@
 # Weatherly 🌦️
 
+## Overview 🚀
+
+Welcome to Weatherly! Your go-to weather app built with HTML, CSS, and JavaScript. Stay informed about the weather conditions for any city or country. What sets Weatherly apart is its efficient use of local storage, preventing unnecessary API calls for the same location within an hour.
+
 ## Features 🚀
 
 - **Real-Time Updates:** Get the latest weather conditions for your location or any city worldwide.
@@ -7,6 +11,7 @@
 - **City Search:** Explore weather information for any city with an easy-to-use search feature.
 - **Temperature Units:** Switch between Celsius and Fahrenheit to suit your preference.
 - **Responsive Design:** Enjoy a seamless experience across desktop and mobile devices.
+- **Local Storage Optimization:** Prevents redundant API calls for the same location within an hour, enhancing performance.
 
 ## Technologies Used ⚛️
 
